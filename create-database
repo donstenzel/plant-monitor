@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+rm -f irrigation.db
+sqlite3 irrigation.db < create.sql
+sqlite3 irrigation.db < data.sql

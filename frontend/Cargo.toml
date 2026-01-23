@@ -1,0 +1,17 @@
+[package]
+name = "frontend"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+common = { path = "../common" }
+
+chrono = { version = "0.4.42", features = ["serde"] }
+
+diesel = { version = "2.3.5", features = ["sqlite", "chrono"] }
+
+eframe = "0.33.3"
+egui = "0.33.3"
+egui_plot = "0.34.0"
+egui_extras = { version = "0.33.3", features = ["all_loaders"] }
+egui_flex = "0.5.0"

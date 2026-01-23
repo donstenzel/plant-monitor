@@ -1,0 +1,32 @@
+#!/usr/bin/env -S uiua run
+# vim: filetype=uiua
+
+C ← $$ INSERT INTO [Measurements] (usage, humidity, temperature, lux, ph, ec, instant)
+    $$ VALUES _;
+
+D ← (
+  °⋕ datetime
+  ⍚⬚@0↙¯ [4 2 2 2 2 2]
+  °[°$"_-_-_ _:_:_"]
+)
+
+V ← $"(_, _, _, _, _, _, datetime('_'))"⊙⊙⊙⊙⊙⊙D
+
+Hum  ← +-₁⚂₃
+PH   ← ⁅₁+÷₅-₁×₂⚂
+Temp ← ⁅₁+-₁×₂⚂
+Date ← +×₁₈₀₀+₁⚂
+Ec   ← ↧₂₀↥₀+-₁⚂₃
+Lux  ← +-₁₀₀⚂₂₀₀
+
+Step ← ⊓(Hum|Temp|Lux|PH|Ec|Date)
+
+# code ? usage count hum temp lux ph ec date
+Vs ← C /$"_,\n       _" ⍚V ⊙∩₅⬚@0°⋕ ⊙⍥◡Step
+
+&fwa "usage-data.sql" /⊂₃ "\n\n" {
+  Vs 1 100 74 22.1 20000 6.5 8 now
+  Vs 2 100 67 18.3 21000 6.6 12 now
+  Vs 3 100 59 19.7 19000 6.3 6 now
+  Vs 4 100 80 24.2 20500 6.4 9 now
+}

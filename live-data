@@ -1,0 +1,30 @@
+#!/usr/bin/env -S uiua run
+# vim: filetype=uiua
+
+S ← $$ INSERT INTO [Measurements] (usage, humidity, temperature, lux, ph, ec, instant)
+    $$ VALUES (_, _, _, _, _, _, datetime('_'));
+
+D ← (
+  °⋕ datetime
+  ⍚⬚@0↙¯ [4 2 2 2 2 2]
+  °[°$"_-_-_ _:_:_"]
+)
+
+Hum  ← +-₁⚂₃
+Temp ← ⁅₁+-₁×₂⚂
+Lux  ← +-₁₀₀⚂₂₀₀
+PH   ← ⁅₁+÷₅-₁×₂⚂
+EC   ← ↧₂₀↥₀+-₁⚂₃
+Date ← +×₁₈₀₀+₁⚂
+
+Step ← ⊓(Hum|Temp|Lux|PH|EC|Date)
+
+# ? usage hum temp lux ph ec date
+Write ← ⍤⟜=₀ &runi {"sqlite3" "irrigation.db" S ⊙⊙⊙⊙⊙⊙D}
+
+Sim ← ⍢(&sl1 ⊃∧Write⊙≡Step)1
+
+Sim °⊟₇⍉ [[1 74 22.1 20000 6.5 8 now]
+          [2 67 18.3 21000 6.6 7 now]
+          [3 59 19.7 19000 6.3 6 now]
+          [4 80 24.2 20500 6.4 9 now]]
