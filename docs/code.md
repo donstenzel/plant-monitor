@@ -209,3 +209,7 @@ ebenfalls für Tests verwendet werden können.
 
 `live-data` simuliert das Einspielen von Daten, während die Applikation
 läuft. Diese Änderungen werden von der Applikation wiedergespiegelt.
+
+`curls.sh` beinhaltet Funktionen um das Backend zu testen. Diese können
+in einer Bash-Shell verwendet werden, dafür einfach `source curls.sh`
+und anschließend den Namen der Funktion als Befehl.

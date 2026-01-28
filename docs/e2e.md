@@ -38,9 +38,12 @@
    wurde.
 
 3. **Anfragen senden**
-   z.B. von IoT-Geräten wie ein ESP32 oder Raspberry Pi.
+   z.B. von IoT-Geräten wie ein ESP32 oder Raspberry Pi,
+   oder durch Funktionen in `curls.sh`
 
 4. **Beobachtung**
    Der Server muss die Anfragen annehmen und beantworten.
    Man könnte z.B. periodisch Daten vom Server auslesen, diese
    müssen dann die neuen Daten beinhalten.
+   Wenn die Anfragen manuell gesendet werden, müssen die Rückgabewerte
+   stimmen.
