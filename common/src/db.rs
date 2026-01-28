@@ -200,21 +200,13 @@ crud! { PotType PlantType Usage Measurement }
 mod tests {
     use super::*;
     use chrono::NaiveDate;
-    use diesel::RunQueryDsl;
+    use diesel::{RunQueryDsl, connection::SimpleConnection};
 
     fn get_test_conn() -> SqliteConnection {
         let mut conn = SqliteConnection::establish(":memory:").unwrap();
 
-        let tables = [
-            "CREATE TABLE PlantTypes (id INTEGER PRIMARY KEY, name TEXT NOT NULL, scientific TEXT NOT NULL, description TEXT NOT NULL, ml_per_day INTEGER NOT NULL, ideal_ph REAL NOT NULL, ideal_temp REAL NOT NULL, ideal_hum REAL NOT NULL, ideal_ec REAL NOT NULL, ideal_lux INTEGER NOT NULL, image TEXT NOT NULL)",
-            "CREATE TABLE PotTypes (id INTEGER PRIMARY KEY, name TEXT NOT NULL, drainage INTEGER NOT NULL, volume INTEGER NOT NULL, image TEXT NOT NULL)",
-            "CREATE TABLE Usages (id INTEGER PRIMARY KEY, plant INTEGER NOT NULL, pot INTEGER NOT NULL, planted TEXT NOT NULL, FOREIGN KEY(plant) REFERENCES PlantTypes(id), FOREIGN KEY(pot) REFERENCES PotTypes(id))",
-            "CREATE TABLE Measurements (id INTEGER PRIMARY KEY, usage INTEGER NOT NULL, humidity REAL NOT NULL, temperature REAL NOT NULL, lux INTEGER NOT NULL, ph REAL NOT NULL, ec REAL NOT NULL, instant TEXT NOT NULL, FOREIGN KEY(usage) REFERENCES Usages(id))",
-        ];
-
-        for sql in tables {
-            diesel::sql_query(sql).execute(&mut conn).unwrap();
-        }
+        let sql = include_str!("../../create.sql");
+        conn.batch_execute(sql).unwrap();
 
         macro_rules! S {
             ($s:literal) => {

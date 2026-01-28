@@ -1,6 +1,7 @@
 # Datenbankschnittstellenbeschreibung
 
 Wir greifen über ein ORM (`rust-diesel`) auf die Datenbank zu.
+Als Datenbankengine verwenden wir SQLite.
 
 Die Datenbank kann sowohl lokal als auch auf einem Server liegen.
 
