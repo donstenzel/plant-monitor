@@ -31,7 +31,7 @@ Die Tests werden mit dem Befehl `cargo test` ausgeführt.
 Grundsätzlich führt der Befehl alle Tests gleichzeitig aus, und zeigt
 dann eine Statistik der Tests und welche Tests fehlgeschlagen sind.
 Man kann allerdings auch einzelne Tests ausführen, dann lautet der
-Befehl `cargo run {test-name}`, wo `{test-name}` mit dem Namen der
+Befehl `cargo test {test-name}`, wo `{test-name}` mit dem Namen der
 jeweiligen Funktion ersetzt wird.
 
 
