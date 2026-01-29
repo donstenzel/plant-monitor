@@ -75,7 +75,7 @@ fn plot_lux(app: &mut Application, ui: &mut Ui) {
     plot_measurements(app, ui, "Light Level (Lux)", |m| m.lux as f64);
 }
 fn plot_ph(app: &mut Application, ui: &mut Ui) {
-    plot_measurements(app, ui, "pH", |m| m.lux as f64);
+    plot_measurements(app, ui, "pH", |m| m.ph as f64);
 }
 
 fn plot_measurements(
