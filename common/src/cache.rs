@@ -14,11 +14,12 @@ struct Entry {
 }
 
 #[repr(transparent)]
+#[derive(Default)]
 pub struct Cache(HashMap<String, Entry>);
 
 macro_rules! cached {
     ( $name:ident => $t:ty ) => {
-        pub fn $name(&mut self) -> &crate::db::DBResult<Vec<$t>> {
+        pub fn $name(&mut self) -> &db::DBResult<Vec<$t>> {
             self.get_or_compute(stringify!($name), Duration::from_secs(1), || {
                 db::with_connection(&db::url(), db::$name)
             })

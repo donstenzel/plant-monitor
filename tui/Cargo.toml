@@ -1,0 +1,19 @@
+[package]
+name = "tui"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chrono = "0.4.42"
+common = { path = "../common" }
+
+crossterm = "0.29.0"
+ratatui = "0.30.0"
+
+serde = { version = "1.0.228", features = ["derive"] }
+
+# [profile.release]
+# codegen-units = 1
+# lto = true
+# opt-level = "s"
+# strip = true
